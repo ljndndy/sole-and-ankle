@@ -47,12 +47,11 @@ const Wrapper = styled.div`
   flex-direction: row-reverse;
   justify-content: flex-end;
   gap: 32px;
+  align-items: baseline;
 `;
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
-  /* alignment with Logo, but very magical number. */
-  padding-top: 16px;
 `;
 
 const MainColumn = styled.div`
@@ -63,7 +62,7 @@ const MainColumn = styled.div`
 
 const Header = styled.header`
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
 `;
 
