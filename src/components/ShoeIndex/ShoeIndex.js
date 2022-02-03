@@ -7,7 +7,7 @@ import Breadcrumbs from '../Breadcrumbs';
 import Select from '../Select';
 import Spacer from '../Spacer';
 import ShoeSidebar from '../ShoeSidebar';
-import ShoeGrid from '../ShoeGrid';
+// import ShoeGrid from '../ShoeGrid';
 
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
@@ -25,7 +25,7 @@ const ShoeIndex = ({ sortId, setSortId }) => {
           </Select>
         </Header>
         <Spacer size={34} />
-        <ShoeGrid />
+        {/* <ShoeGrid /> */}
       </MainColumn>
       <LeftColumn>
         <Breadcrumbs>
@@ -42,13 +42,30 @@ const ShoeIndex = ({ sortId, setSortId }) => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 32px;
+`;
 
-const LeftColumn = styled.div``;
+const LeftColumn = styled.div`
+  flex-basis: 248px;
+  /* alignment with Logo, but very magical number. */
+  padding-top: 16px;
+`;
 
-const MainColumn = styled.div``;
+const MainColumn = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+`;
 
-const Header = styled.header``;
+const Header = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
 
 const Title = styled.h2`
   font-size: 1.5rem;
