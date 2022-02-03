@@ -31,32 +31,24 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
-  const FLAGSTYLES = {
-    'on-sale': {
-      color: COLORS.primary,
-      text: 'Sale'
-    },
-    'new-release': {
-      color: COLORS.secondary,
-      text: 'Just Released!'
-    }
-  };
+  const priceStyles = variant === 'on-sale' ? {decoration: 'line-through', color: COLORS.gray[700]} : {};
 
-  const f = FLAGSTYLES[variant];
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
-          {f && <Flag style={{'--flag-color': f.color}}>{f.text}</Flag>}
+          {variant === 'on-sale' && <Flag style={{'--flag-color': COLORS.primary}}>Sale</Flag>}
+          {variant === 'new-release' && <Flag style={{'--flag-color': COLORS.secondary}}>Just Released!</Flag>}
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price style={{'--text-decoration': priceStyles.decoration, '--color': priceStyles.color}}>{formatPrice(price)}</Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          {variant === 'on-sale' && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
         </Row>
       </Wrapper>
     </Link>
@@ -67,6 +59,7 @@ const Link = styled.a`
   text-decoration: none;
   color: inherit;
   flex: 1 0 340px;
+  margin-bottom: 32px;
 `;
 
 const Wrapper = styled.article``;
@@ -92,6 +85,8 @@ const Flag = styled.div`
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
@@ -99,7 +94,10 @@ const Name = styled.h3`
   color: ${COLORS.gray[900]};
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+  text-decoration: var(--text-decoration);
+  color: var(--color);
+`;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
